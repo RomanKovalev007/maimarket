@@ -9,7 +9,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('users/', include('users.urls', namespace="users")),
-    path('goods/', include('goods.urls', namespace="goods"))
+    path('goods/', include('goods.urls', namespace="goods")),
+    path('favorites/', include('favorites.urls', namespace="favorites"))
 ]
 
 if settings.DEBUG:
