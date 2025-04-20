@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link type="text/css" href="{% static 'main/css/main_style.css'%}" rel="stylesheet">
+    {% block js %} {% endblock %}
+
+</head>
+<body>
+    <header class="header">
+        <a class="header__logo" href="/">
+           <img class="header__logo-image" src="{% static 'main/img/mai_logo_color.png' %}" alt="MAI logo" width="80px">
+        </a>
+        <form class="header__form">
+                <input class="header__form-search"  type="text" placeholder="Поиск товаров...">
+            <button class="header__form-search-button" type="submit">Найти</button>
+        </form>
+
+        <nav class="header__menu">
+            <ul class="header__menu-list">
+                <li class="header__menu-item">
+                    <a class="header__menu-link header__menu-link--heart" href="#">Избаранное</a>
+                </li>
+                <li class="header__menu-item">
+                    <a class="header__menu-link header__menu-link--folder" href="{% url 'goods:goods_list' %}">Категории</a>
+                </li>
+                <li class="header__menu-item header__menu-item--mail">
+                    <a class="header__menu-link header__menu-link" href="#">Поддержка</a>
+                </li>
+                <li class="header__menu-item header__menu-item--info">
+                    <a class="header__menu-link" href="{% url 'goods:add_ad' %}">Разместить объявление</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                <li class="header__menu-item">
+                    <a class="header__menu-link header__menu-link--profile" href="{% url 'users:profile' %}">{{ user.username }}</a>
+                </li>
+                {% else %}
+                <li class="header__menu-item">
+                    <a class="header__menu-link header__menu-link--profile" href="{% url 'users:login' %}">Вход</a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+
+{% block content %} {% endblock %}
+
+</body>
+</html>

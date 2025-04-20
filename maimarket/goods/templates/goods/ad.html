@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ ad.name }}</h1>
+
+{% if ad.image %}
+<p><img src="{{ ad.image.url }}" alt="Изображение"> </p>
+{% endif %}
+
+{{ad.description|linebreaks}}
+
+{% endblock %}

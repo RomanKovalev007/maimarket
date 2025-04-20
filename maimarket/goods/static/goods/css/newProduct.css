@@ -1,0 +1,273 @@
+/**
+   Добавление товаров для шаблона 'add_ad'
+**/
+.add-product{
+    display: flex;
+    flex-direction: column;
+    row-gap: 70px;
+}
+
+.add-product__form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 70px;
+}
+
+
+.add-product__name{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+}
+.add-product__name label{
+    font-size: var(--Zagalovok);
+    font-weight: 700;
+}
+
+
+.add-product__name-input{
+    width: 100%;
+    max-width: 636px;
+    background-color: rgba(219, 210, 210, 0.404);
+    height: 60px;
+    border: 0;
+    border-radius: 14px;
+    padding: 15px;
+}
+
+.title{
+    font-size: var(--Zagalovok);
+    font-weight: 700;
+    display: inline-flex;
+}
+
+
+
+.add-product__photo{
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+
+
+.add-product__photo-inner{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+
+}
+
+
+.preview__image{
+    width: 230px;
+    height: 230px;
+    border-radius: 14px;
+    object-fit: cover;
+
+}
+.photo-preview-wrapper{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.hidden{
+    display: none;
+}
+.photo-upload p{
+    background-color: rgba(219, 210, 210, 0.404);
+    border: 0;
+    text-align: center;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    width: 230px;
+    height: 230px;
+}
+
+.uploadtext{
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+
+.photo-preview-box{
+    position: relative;
+    margin-right: 20px;
+
+}
+
+.delete__photoBTN{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    padding: 0;
+
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(219, 210, 210, 0.712);
+
+
+}
+
+.red_line{
+    position: absolute;
+    display: block;
+    width: 75%;
+    height: 2px;
+    background-color: red;
+    transform: rotate(45deg);
+    transform-origin: center center;
+}
+
+.red_line:last-child{
+    transform: rotate(-45deg);
+
+}
+
+
+
+.add-product__description{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.decription-area{
+    width: 100%;
+    max-width: 636px;
+    height: 250px;
+    resize: none;
+    padding: 15px;
+    background-color: rgba(219, 210, 210, 0.404);
+    border: 0;
+    border-radius: 14px
+}
+
+.radiobtn{
+    display: inline-flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.radio__emulator{
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 1px solid black;border-radius: 50%;
+    position: relative;
+}
+
+input[type="radio"]:not(:checked) ~ .radio__emulator::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background-color: #4490d3;
+    opacity: 0;
+
+}
+
+input[type="radio"]:checked ~ .radio__emulator::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    background-color: #4490d3;
+    opacity: 1;
+    transition-duration: 0.5s;
+
+}
+
+
+.categories__input{
+    background-color: rgba(219, 210, 210, 0.404);
+    border: 0;
+    border-radius: 14px;
+    height: 60px;
+    border: 0;
+    padding: 15px;
+    max-width: 636px;
+
+}
+.add-product__categori{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+}
+
+
+
+.Btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg-base);
+    width: 100%;
+      height: 60px;
+    border-radius: 14px;
+    border: none;
+    font-weight: 700;
+    text-decoration: none;
+    color: linen;
+    margin-top: auto;
+}
+
+  .btns{
+    display: flex;
+    align-items: center;
+    max-width: 636px;
+    justify-content: space-between;
+    column-gap: 25px;
+  }
+
+  .price{
+    display: inline-flex;
+    flex-direction: column;
+    row-gap: 15px;
+  }
+
+  .price__input{
+    border: none;
+    max-width: 636px;
+    background-color: rgba(219, 210, 210, 0.404);
+    height: 60px;
+    padding: 15px;
+    border-radius: 14px;
+
+  }
+
+
+  .add-product__radio{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+  }
+
+  .radiabatns{
+    display: flex;
+    column-gap: 25px;
+  }
+
+/**
+   Конец добавление товаров для шаблона 'add_ad'
+**/

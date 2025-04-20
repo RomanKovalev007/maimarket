@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAI Registration</title>
+    <link rel="stylesheet" href="{% static 'users/css/form-login.css' %}">
+    <script src="{% static 'users/js/form-log.js' %}" defer></script>
+
+</head>
+<body>
+<div class="go_home">
+    <a class="header_logo" href="/">
+        <img class="header_logo-image" src="{% static 'main/img/mai_logo_color.png' %}" alt="MAI logo" width="80px">
+    </a>
+</div>
+    <section class="container">
+        <div class="Registration">
+                {% block content %}{% endblock %}
+        </div>
+    </section>
+</body>
+</html>
