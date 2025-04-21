@@ -23,7 +23,7 @@
         <nav class="header__menu">
             <ul class="header__menu-list">
                 <li class="header__menu-item">
-                    <a class="header__menu-link header__menu-link--heart" href="#">Избаранное</a>
+                    <a class="header__menu-link header__menu-link--heart" href="{% url 'favorites:fav_list' %}">Избаранное</a>
                 </li>
                 <li class="header__menu-item">
                     <a class="header__menu-link header__menu-link--folder" href="{% url 'goods:goods_list' %}">Категории</a>

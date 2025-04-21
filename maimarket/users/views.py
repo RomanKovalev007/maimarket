@@ -1,12 +1,10 @@
 from audioop import reverse
 
-from django.contrib.auth import logout, get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
@@ -28,6 +26,7 @@ class RegisterUser(CreateView):
 def register_done(request):
     return render(request, 'users/register_done.html')
 
+
 class ProfileUser(LoginRequiredMixin, UpdateView):
     model = get_user_model()
     form_class = ProfileUserForm
@@ -43,6 +42,9 @@ class UserPasswordChange(PasswordChangeView):
     success_url = reverse_lazy('users:password_change_done')
     template_name = 'users/password_change.html'
 
+def profile(request, user_id):
+    user = get_object_or_404(get_user_model(), id=user_id)
+    return render(request, 'users/profile.html', {'user': user})
 
 
 
@@ -50,5 +52,5 @@ class UserPasswordChange(PasswordChangeView):
 def profile_user(request):
     ads = Goods.objects.filter(seller=request.user)
     data = {'ads': ads}
-    return render(request, 'users/profile.html', data)
+    return render(request, 'users/my_profile.html', data)
 

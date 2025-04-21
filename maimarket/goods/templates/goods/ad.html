@@ -7,6 +7,12 @@
 <p><img src="{{ ad.image.url }}" alt="Изображение"> </p>
 {% endif %}
 
+<a href="{{ ad.seller.get_absolute_url }}">
+{{ ad.seller.username }}
+</a>
+
 {{ad.description|linebreaks}}
+
+{{ ad.price }}
 
 {% endblock %}
