@@ -1,10 +1,12 @@
 from gc import get_objects
+from itertools import product
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
+from favorites.models import Favorites
 from goods.forms import AddAdForm
 from goods.models import Goods
 
@@ -20,14 +22,15 @@ class AddAd(LoginRequiredMixin, CreateView):
         w.seller = self.request.user
         return super().form_valid(form)
 
-class GoodsList(ListView):
-    template_name = 'goods/goods_list.html'
-    context_object_name = 'ads'
-    title_page = 'Список товаров'
-    cat_selected = 0
-
-    def get_queryset(self):
-        return Goods.objects.filter(is_published=1).select_related('category')
+def goods_list(request):
+    ads = Goods.objects.filter(is_published=1)
+    for ad in ads:
+        if Favorites.objects.filter(user=request.user, product=ad).exists():
+            ad.icon_class = "icon-red-heart"
+        else:
+            ad.icon_class = "icon--heart"
+    data = {'ads': ads}
+    return render(request, 'goods/goods_list.html', data)
 
 
 def show_ad(request, ad_slug):

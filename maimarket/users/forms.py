@@ -16,7 +16,7 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
 
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'password1', 'password2', 'email']
         # 'first_name', 'last_name',  'number', 'email'
         labels = {
             'password1': 'Пароль',

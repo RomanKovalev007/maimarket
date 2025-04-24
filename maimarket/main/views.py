@@ -2,17 +2,19 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView
 
+from favorites.models import Favorites
 from goods.models import Goods
 
 
-class MainPage(ListView):
-    template_name = 'main/index.html'
-    context_object_name = 'ads'
-    title_page = 'Главная страница'
-    cat_selected = 0
-
-    def get_queryset(self):
-        return Goods.objects.filter(is_published=1).select_related('category')
+def main_page(request):
+    ads = Goods.objects.filter(is_published=1)
+    for ad in ads:
+        if Favorites.objects.filter(user=request.user, product=ad).exists():
+            ad.icon_class = "icon-red-heart"
+        else:
+            ad.icon_class = "icon--heart"
+    data = {'ads': ads}
+    return render(request, 'main/index.html', data)
 
 def index(request):
     data = {'title': 'MAI_market'}

@@ -3,9 +3,7 @@
 
 <h1>{{ user.username }}</h1>
 <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-<h1>RANDOM GIT</h1>
-<h2>RANDOM GIT2</h2>
-<h3>RANDOM GIT3</h3>
+
 {% if user.photo %}
 <p><img src="{{ user.photo.url }}" alt="Изображение"> </p>
 {% endif %}
