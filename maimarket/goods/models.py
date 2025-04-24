@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from unicodedata import category
 
 from users.models import User
 
@@ -23,6 +24,9 @@ class Categories(models.Model):
         verbose_name = 'Категорию'
         verbose_name_plural = 'Категории'
 
+ #   def get_absolute_url(self):
+
+
     def __str__(self):
         return self.name
 
@@ -35,6 +39,7 @@ class Goods(models.Model):
     price = models.PositiveIntegerField(default=0, verbose_name='Цена')
     category = models.ForeignKey(to=Categories, on_delete=models.PROTECT, verbose_name='Категория')
     #related_name = 'goods'
+
     seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name='Продавец')
     condition = models.BooleanField(default=True)
     is_published = models.BooleanField(default=True)

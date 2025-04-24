@@ -37,7 +37,7 @@
 
                 {% if user.is_authenticated %}
                 <li class="header__menu-item">
-                    <a class="header__menu-link header__menu-link--profile" href="{% url 'users:profile' %}">{{ user.username }}</a>
+                    <a class="header__menu-link header__menu-link--profile" href="{% url 'users:profile' %}">{{ request.user.username }}</a>
                 </li>
                 {% else %}
                 <li class="header__menu-item">
