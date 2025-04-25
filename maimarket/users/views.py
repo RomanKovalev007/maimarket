@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
 from goods.models import Goods
-from users.forms import LoginUserForm, RegisterForm, ProfileUserForm, UserPasswordChangeForm
+from users.forms import LoginUserForm, RegisterForm, ProfileUserDataChangeForm, UserPasswordChangeForm
 
 
 class LoginUser(LoginView):
@@ -27,15 +27,16 @@ def register_done(request):
     return render(request, 'users/register_done.html')
 
 
-class ProfileUser(LoginRequiredMixin, UpdateView):
+class ProfileUserDataChange(LoginRequiredMixin, UpdateView):
     model = get_user_model()
-    form_class = ProfileUserForm
+    form_class = ProfileUserDataChangeForm
     template_name = 'users/profile_change_data.html'
-    extra_context = {'title': "Профиль пользователя"}
+    extra_context = {'title': 'Профиль пользователя'}
     success_url = reverse_lazy('users:profile')
 
     def get_object(self, queryset=None):
         return self.request.user
+
 
 class UserPasswordChange(PasswordChangeView):
     form_class = UserPasswordChangeForm

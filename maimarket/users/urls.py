@@ -13,7 +13,7 @@ urlpatterns = [
     path('register_done/', views.register_done, name='register_done'),
     path('profile/<int:user_id>/', views.profile, name='profile_user'),
     path('my_profile/', views.profile_user, name='profile'),
-    path('profile/change_data/', views.ProfileUser.as_view(), name='profile_change_data'),
+    path('profile/change_data/', views.ProfileUserDataChange.as_view(), name='profile_change_data'),
     path('profile/change_password/', views.UserPasswordChange.as_view(), name='password_change'),
     path('profile/change_password/done/', PasswordChangeDoneView.as_view(template_name='users/password_change_done.html'), name='password_change_done'),
 

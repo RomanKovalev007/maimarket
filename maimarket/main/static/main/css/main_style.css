@@ -777,8 +777,9 @@ input[type="radio"]:checked ~ .radio__emulator::after{
     height: 60px;
     padding: 15px;
     border-radius: 14px;
-
   }
+
+
 
 
   .add-product__radio{
