@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточка товара</title>
+    <link rel="stylesheet" href="/profile.css">
+    <script src="/profile-delte-favorite.js" defer></script>
+    <script src="/new-product.js" defer></script>
+    <script src="/tabs.js" defer></script>
+
+</head>
+<body>
+    <header class="header">
+        <a class="header__logo" href="/">
+            <img class="header__logo-image" src="./MAI_logo_color.png" alt="MAI logo" width="100" height="100">
+        </a>
+        <form class="header__form">
+                <input class="header__form-search"  type="text" placeholder="Поиск товаров...">
+            <button class="header__form-search-button" type="submit">Найти</button>
+        </form>
+
+        <nav class="header__menu">
+            <ul class="header__menu-list">
+                <li class="header__menu-item">
+                    <a class="header__menu-link header__menu-link--heart" href="#">Избаранное</a>
+                </li>
+                <li class="header__menu-item">
+                    <a class="header__menu-link header__menu-link--folder" href="#">Категории</a>
+                </li>
+                <li class="header__menu-item ">
+                    <a class="header__menu-link header__menu-item--info " href="#">О сайте</a>
+                </li>
+            
+                <li class="header__menu-item ">
+                    <a class="header__menu-link header__menu-item--mail" href="#">Поддержка</a>
+                </li>
+                <!-- <li class="header__menu-item">
+                    <a class="header__menu-link header__menu-link--profile" href="/form-login.html">Войти</a>
+                </li> -->
+                <li class="header__menu-item">
+                  <a class="header__menu-link" href="/form-login.html">
+                    <span class="profile__logo">
+                      <img class="profile__logo-image" src="/img/iphone_16_128_gb_rozovyy.jpg" alt="" width="35" height="35">
+                    </span>
+                    Профиль
+                  </a>
+              </li>
+
+
+            </ul>
+        </nav>
+    </header>
+    <section class="profile container" >
+        <h1 class="profile__title">Профиль</h1>
+        <div class="profile__wrapper" data-js-tabs>
+            <aside class="profile__aside">
+                <div class="profile__header">
+                    <img class="profile__item" src="/img/1.png" alt="" width="100" height="100">
+                    <div class="profile__character">
+                        <p class="profile__last-name aside-title h2">Козлов</p>
+                        <p class="profile__name aside-title h2">Константин</p>
+                    </div>
+                </div>
+                <div class="profile__body ">
+                    <div class="tabs" role="tablist">
+                        <button class="tabs__button is-active" 
+                        id="tabBtn1" 
+                        aria-controls="area1"
+                        tabindex="0"
+                        role="tab"
+                        type="button"
+                        data-js-tabs-button
+                        aria-selected="true"
+                        >
+                            Мои товары
+                        </button>
+                        <button class="tabs__button"
+                        id="tabBtn2" 
+                        aria-controls="area2"
+                        tabindex="-1"
+                        role="tab"
+                        type="button"
+                        data-js-tabs-button
+                        aria-selected="false"
+                        >
+                            Избранное
+                        </button>
+                        <button class="tabs__button"
+                        id="tabBtn3" 
+                        aria-controls="area3"
+                        tabindex="-1"
+                        role="tab"
+                        type="button"
+                        data-js-tabs-button
+                        aria-selected="false"
+                        >
+                            Изменить профиль
+                        </button>
+                        
+                        <a href="/newProduct.html" class="tabs__button">
+                            добавить товар
+                        </a>
+                    
+                    </div>
+                </div>
+            </aside>
+            <div class="profile__main">
+                <div class="profile__main-wrapper">
+                    <div class="tabs__body is-active"
+                    id="area1"
+                    aria-labelledby="tabBtn1"
+                    data-js-tabs-content
+                    tabindex="0"
+                    >   
+                        <h2 class="profile-main-title">Мои товары</h2>
+                        <ul class="my-products__list">
+                            <li class="my-products__item">
+                                <div class="my-products__item-wrapper">
+                                    <div class="my-products__photo">
+                                        <img class="my-products__image" src="/img/iphone_16_128_gb_rozovyy.jpg" alt="">
+                                    </div>
+                                    <div class="my-products__info   ">
+                                        <h3 class="my-products__name">iphone 16</h3>
+                                        <p class="my-products__price">1200 <span>₽</span></p>
+                                    </div>
+                                </div>
+                                <div class="my-products__btns">
+                                    <button class="my-products__button my-products__button--edit">Редактировать</button>
+                                    <button class="my-products__button my-products__button--delete" data-js-delete-favorites>Удалить</button>
+
+                                </div>
+                            </li>
+                            <li class="my-products__item">
+                                <div class="my-products__item-wrapper">
+                                    <div class="my-products__photo">
+                                        <img class="my-products__image" src="/img/53e26408531020c2b756d003c7f22d1a.jpg" alt="">
+                                    </div>
+                                    <div class="my-products__info">
+                                        <h3 class="my-products__name">Mac book Pro M4 AMG</h3>
+                                        <p class="my-products__price">180000 <span>₽</span></p>
+                                    </div>
+                                </div>
+                                <div class="my-products__btns">
+                                    <button class="my-products__button my-products__button--edit">Редактировать</button>
+                                    <button class="my-products__button my-products__button--delete" data-js-delete-favorites>Удалить</button>
+
+                                </div>
+                            </li>
+                            <li class="my-products__item">
+                                <div class="my-products__item-wrapper">
+                                    <div class="my-products__photo">
+                                        <img class="my-products__image" src="/img/iphone_16_128_gb_rozovyy.jpg" alt="">
+                                    </div>
+                                    <div class="my-products__info   ">
+                                        <h3 class="my-products__name">iphone 16</h3>
+                                        <p class="my-products__price">1200 <span>₽</span></p>
+                                    </div>
+                                </div>
+                                <div class="my-products__btns">
+                                    <button class="my-products__button my-products__button--edit">Редактировать</button>
+                                    <button class="my-products__button my-products__button--delete" data-js-delete-favorites>Удалить</button>
+
+                                </div>
+                            </li>
+                            <li class="my-products__item">
+                                <div class="my-products__item-wrapper">
+                                    <div class="my-products__photo">
+                                        <img class="my-products__image" src="/img/53e26408531020c2b756d003c7f22d1a.jpg" alt="">
+                                    </div>
+                                    <div class="my-products__info">
+                                        <h3 class="my-products__name">lorem20</h3>
+                                        <p class="my-products__price">180000 <span>₽</span></p>
+                                    </div>
+                                </div>
+                                <div class="my-products__btns">
+                                    <button class="my-products__button my-products__button--edit">Редактировать</button>
+                                    <button class="my-products__button my-products__button--delete" data-js-delete-favorites>Удалить</button>
+
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="tabs__body"
+                    id="area2"
+                    aria-labelledby="tabBtn2"
+                    data-js-tabs-content
+                    tabindex="-1"
+                    >
+                    <h2 class="profile-main-title">Избранное</h2>
+                    <ul class="my-products__list">
+                    <li class="my-products__item">
+                        <div class="my-products__item-wrapper">
+                            <div class="my-products__photo">
+                                <img class="my-products__image" src="/img/iphone_16_128_gb_rozovyy.jpg" alt="">
+                            </div>
+                            <div class="my-products__info   ">
+                                <h3 class="my-products__name">iphone 16</h3>
+                                <p class="my-products__price">1200 <span>₽</span></p>
+                            </div>
+                        </div>
+                        <div class="my-products__btns">
+                            <button class="my-products__button my-products__button--delete-from-likes" data-js-delete-favorites>Убрать из избранного</button>
+                        </div>
+                    </li>
+                    <li class="my-products__item">
+                        <div class="my-products__item-wrapper">
+                            <div class="my-products__photo">
+                                <img class="my-products__image" src="/img/53e26408531020c2b756d003c7f22d1a.jpg" alt="">
+                            </div>
+                            <div class="my-products__info">
+                                <h3 class="my-products__name">Mac book Pro M4 AMG</h3>
+                                <p class="my-products__price">180000 <span>₽</span></p>
+                            </div>
+                        </div>
+                        <div class="my-products__btns">
+                            <button class="my-products__button my-products__button--delete-from-likes" data-js-delete-favorites>Убрать из избранного</button>
+                        </div>
+                    </li>
+                    <li class="my-products__item">
+                        <div class="my-products__item-wrapper">
+                            <div class="my-products__photo">
+                                <img class="my-products__image" src="/img/iphone_16_128_gb_rozovyy.jpg" alt="">
+                            </div>
+                            <div class="my-products__info   ">
+                                <h3 class="my-products__name">iphone 16</h3>
+                                <p class="my-products__price">1200 <span>₽</span></p>
+                            </div>
+                        </div>
+                        <div class="my-products__btns">
+                            <button class="my-products__button my-products__button--delete-from-likes" data-js-delete-favorites>Убрать из избранного</button>
+                        </div>
+                    </li>
+                    <li class="my-products__item">
+                        <div class="my-products__item-wrapper">
+                            <div class="my-products__photo">
+                                <img class="my-products__image" src="/img/53e26408531020c2b756d003c7f22d1a.jpg" alt="">
+                            </div>
+                            <div class="my-products__info">
+                                <h3 class="my-products__name">lorem20</h3>
+                                <p class="my-products__price">180000 <span>₽</span></p>
+                            </div>
+                        </div>
+                        <div class="my-products__btns">
+                            <button class="my-products__button my-products__button--delete-from-likes" data-js-delete-favorites>Убрать из избранного</button>
+                        </div>
+                    </li>
+                    
+                </ul>
+                    </div>
+                    <div class="tabs__body "
+                    id="area3"
+                    aria-labelledby="tabBtn3"
+                    data-js-tabs-content
+                    tabindex="-1"
+                    >
+                        <div class="edit-profile-wrapper">
+                            <div class="edit-profile__photo">
+                                <form class="add-product__form">
+                                    <div class="add-product__photo">
+                                        <h3> Изменить фотографию</h3>
+                                        <div class="add-product__photo-inner">
+                                            <div class="photo-preview-wrapper">
+                                                <div class="photo-preview-box hidden">
+                                                    <img class="preview__image" id="preview" src=""  width="70" height="70"/>
+                                                    <button class="delete__photoBTN">
+                                                        <span class="red_line"></span>
+                                                        <span class="red_line"></span>  
+                                                    </button>
+                                                </div>
+                                            </div>
+                        
+                                            <div class="photo-upload">
+                                                <label class="photo-upload-label">
+                                                <input class="photo-upload__input" type="file" id="fileInput" accept="image/*" hidden>
+                                                    <p class="uploadtext">Добавить фотографию</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="add-product__name">
+                                        <label for="prodName">Имя</label>
+                                        <input class="add-product__name-input" type="text" name="prodName" id="prodName">
+                                    </div>
+                                    <div class="add-product__name">
+                                        <label for="prodlastname">Фамилия</label>
+                                        <input class="add-product__name-input" type="text" name="prodlastname" id="prodlastname">
+                                    </div>
+
+                                    <div class="add-product__radio">
+                                        <p class="title">Пол</p>
+                                        <div class="radiabatns">
+                                            <label class="radiobtn" >
+                                                <input class="radiotruebtn visually-hidden" checked type="radio" name="gender" id="male" value="Male">
+                                                <span class="radio__emulator"></span>
+                                                <span class="radio__label">Мужской</span>
+                                            </label>
+                                        
+                                        
+                                            <label class="radiobtn" >
+                                                <input class="radiotruebtn visually-hidden" type="radio" name="gender" id="female" value="Female">
+                                                <span class="radio__emulator"></span>
+                                                <span class="radio__label">Женский</span>
+                                            </label>
+                                        </div>
+                                        
+                                        
+                                    </div>
+
+                                    <div class="price">
+                                        <label class="title" for="price">Номер телефона</label>
+                                        <div class="priece__wrapper">
+                                            <input type="number"   class="price__input" id="price" name="priceProd">
+                                        </div> 
+                                    </div>
+                        
+                                    <div class="add-product__description">
+                                        <label class="title" for="prodDescprition">О себе</label>
+                                        <textarea class="decription-area" name="description" id="prodDescprition"></textarea>
+                                    </div>
+
+                                    <div class="btns">
+                                        <button class="Btn" type="submit">Сохранить</button>
+                                        <a  class="Btn" href="/">Выйти</a>
+                                    </div>
+                                   </form>
+                        
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+  
+</body>
+</html>
