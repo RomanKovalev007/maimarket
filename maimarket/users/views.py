@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
+from favorites.models import Favorites
 from goods.models import Goods
 from users.forms import LoginUserForm, RegisterForm, ProfileUserDataChangeForm, UserPasswordChangeForm
 
@@ -45,7 +46,10 @@ class UserPasswordChange(PasswordChangeView):
 
 def profile(request, user_id):
     user = get_object_or_404(get_user_model(), id=user_id)
-    return render(request, 'users/profile.html', {'user': user})
+    ads = Goods.objects.filter(seller=user)
+    data = {'ads': ads,
+            'user': user,}
+    return render(request, 'users/profile.html', data)
 
 
 

@@ -40,7 +40,7 @@ def show_ad(request, ad_slug):
         'ad': ad,
         'title': ad.name
     }
-    return render(request, 'goods/ad.html', context)
+    return render(request, 'goods/product-card.html', context)
 
 
 def edit_ad(request, ad_slug):
