@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
+from django.core.exceptions import ValidationError
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'placeholder': 'Введите логин', 'class': 'form__input'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'placeholder': 'Введите логин или email', 'class': 'form__input'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль', 'class': 'form__input'}))
 
 
@@ -36,9 +37,14 @@ class RegisterForm(UserCreationForm):
             'number': forms.NumberInput(attrs={'placeholder': 'Введите номер телефона', 'class': 'form__input'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Введите электронную почту', 'class': 'form__input'})
         }
+        def clean_email(self):
+            email = self.cleaned_data['email']
+            if get_user_model().objects.filter(email=email).exists():
+                raise ValidationError('Пользователь с таким email уже существует')
 
-class ProfileUserForm(forms.ModelForm):
+class ProfileUserDataChangeForm(forms.ModelForm):
     username = forms.CharField(disabled=None, label='Логин')
+    email = forms.CharField(disabled=None, label='Email', widget=forms.EmailInput(attrs={'placeholder': 'Введите электронную почту'}))
 
     class Meta:
         model = get_user_model()
@@ -55,7 +61,6 @@ class ProfileUserForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'placeholder': 'Введите имя'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Введите фамилию'}),
             'number': forms.NumberInput(attrs={'placeholder': 'Введите номер телефона'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'Введите электронную почту'})
         }
 
 class UserPasswordChangeForm(PasswordChangeForm):

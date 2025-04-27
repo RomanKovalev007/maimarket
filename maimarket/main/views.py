@@ -8,12 +8,16 @@ from goods.models import Goods
 
 def main_page(request):
     ads = Goods.objects.filter(is_published=1)
-    for ad in ads:
-        if Favorites.objects.filter(user=request.user, product=ad).exists():
-            ad.icon_class = "icon-red-heart"
-        else:
+    if request.user.is_authenticated:
+        for ad in ads:
+            if Favorites.objects.filter(user=request.user, product=ad).exists():
+                ad.icon_class = "icon-red-heart"
+            else:
+                ad.icon_class = "icon--heart"
+    else:
+        for ad in ads:
             ad.icon_class = "icon--heart"
-    data = {'ads': ads}
+    data = {'ads': ads, 'title': 'MAI Market'}
     return render(request, 'main/index.html', data)
 
 def index(request):

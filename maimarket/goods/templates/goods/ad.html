@@ -15,4 +15,8 @@
 
 {{ ad.price }}
 
+{% if user == ad.seller %}
+<a class="form__link" href="{% url 'goods:edit' ad.slug %}">Редактировать товар</a>
+{% endif %}
+
 {% endblock %}

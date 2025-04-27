@@ -3,12 +3,10 @@ from django import forms
 from goods.models import Goods, Categories
 
 
-class AddAdForm(forms.ModelForm):
+class AdForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label='Категория не выбрана',
                                       label='Категория', required=True,
                                       widget=forms.Select(attrs={'class': "categories__input"}))
-    image = forms.ImageField(label='Фотографии',
-                             widget=forms.FileInput(attrs={'class': "photo-upload__input", 'hidden': True, 'id': "fileInput"}))
 
     class Meta:
         model = Goods
@@ -28,9 +26,7 @@ class AddAdForm(forms.ModelForm):
             'condition': forms.CheckboxInput,
             'name': forms.TextInput(attrs={'placeholder': 'Введите название', 'class': "add-product__name-input"}),
             'image': forms.FileInput(attrs={'class': "photo-upload__input", 'hidden': True, 'id': "fileInput"}),
-            #'category': forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label='Категория не выбрана', attrs={'class': "categories__input"}),
             'description': forms.Textarea(attrs={'placeholder': 'Опишите ваш товар или услугу', 'class': "decription-area"}),
             'price': forms.NumberInput(attrs={'placeholder': 'Введите цену', 'class': "price__input"}),
         }
-
 
