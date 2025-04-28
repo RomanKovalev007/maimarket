@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link type="text/css" href="{% static 'goods/css/new_prod.css'%}" rel="stylesheet">
+{% endblock %}
+
 {% block js %}
-<script src="{% static 'goods/js/new-product.js' %}" defer></script>
+    <script src="{% static 'goods/js/new-product.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}

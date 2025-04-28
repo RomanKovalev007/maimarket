@@ -29,4 +29,86 @@
     </form>
     </p>
 
+<div class="tabs__body "
+id="area3"
+aria-labelledby="tabBtn3"
+data-js-tabs-content
+tabindex="-1"
+>
+    <div class="edit-profile-wrapper">
+        <div class="edit-profile__photo">
+            <form class="add-product__form">
+                <div class="add-product__photo">
+                    <h3> Изменить фотографию</h3>
+                    <div class="add-product__photo-inner">
+                        <div class="photo-preview-wrapper">
+                            <div class="photo-preview-box hidden">
+                                <img class="preview__image" id="preview" src=""  width="70" height="70"/>
+                                <button class="delete__photoBTN">
+                                    <span class="red_line"></span>
+                                    <span class="red_line"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="photo-upload">
+                            <label class="photo-upload-label">
+                            <input class="photo-upload__input" type="file" id="fileInput" accept="image/*" hidden>
+                                <p class="uploadtext">Добавить фотографию</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-product__name">
+                    <label for="prodName">Имя</label>
+                    <input class="add-product__name-input" type="text" name="prodName" id="prodName">
+                </div>
+                <div class="add-product__name">
+                    <label for="prodlastname">Фамилия</label>
+                    <input class="add-product__name-input" type="text" name="prodlastname" id="prodlastname">
+                </div>
+
+                <div class="add-product__radio">
+                    <p class="title">Пол</p>
+                    <div class="radiabatns">
+                        <label class="radiobtn" >
+                            <input class="radiotruebtn visually-hidden" checked type="radio" name="gender" id="male" value="Male">
+                            <span class="radio__emulator"></span>
+                            <span class="radio__label">Мужской</span>
+                        </label>
+
+
+                        <label class="radiobtn" >
+                            <input class="radiotruebtn visually-hidden" type="radio" name="gender" id="female" value="Female">
+                            <span class="radio__emulator"></span>
+                            <span class="radio__label">Женский</span>
+                        </label>
+                    </div>
+
+
+                </div>
+
+                <div class="price">
+                    <label class="title" for="price">Номер телефона</label>
+                    <div class="priece__wrapper">
+                        <input type="number"   class="price__input" id="price" name="priceProd">
+                    </div>
+                </div>
+
+                <div class="add-product__description">
+                    <label class="title" for="prodDescprition">О себе</label>
+                    <textarea class="decription-area" name="description" id="prodDescprition"></textarea>
+                </div>
+
+                <div class="btns">
+                    <button class="Btn" type="submit">Сохранить</button>
+                    <a  class="Btn" href="/">Выйти</a>
+                </div>
+               </form>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}

@@ -8,6 +8,7 @@
     <title>{{ title }}</title>
     {% block css %} {% endblock %}
     <link type="text/css" href="{% static 'main/css/main_style.css'%}" rel="stylesheet">
+
     {% block js %} {% endblock %}
 
 </head>
@@ -36,16 +37,20 @@
                     <a class="header__menu-link" href="{% url 'goods:add_ad' %}">Разместить объявление</a>
                 </li>
 
+                <li class="header__menu-item">
                 {% if user.is_authenticated %}
-                <li class="header__menu-item">
-                    <a class="header__menu-link header__menu-link--profile" href="{% url 'users:profile' %}">{{ request.user.username }}</a>
-                </li>
+                  <a class="header__menu-link" href="{{ request.user.get_absolute_url }}">
+                    <span class="profile__logo">
+                      <img class="profile__logo-image" src="/img/iphone_16_128_gb_rozovyy.jpg" alt="" width="35" height="35">
+                    </span>
+                    {{ request.user.username }}
+                  </a>
                 {% else %}
-                <li class="header__menu-item">
-                    <a class="header__menu-link header__menu-link--profile" href="{% url 'users:login' %}">Вход</a>
-                </li>
+                  <a class="header__menu-link" href="{% url 'users:login' %}">
+                    Вход
+                  </a>
                 {% endif %}
-
+                </li>
             </ul>
         </nav>
     </header>
