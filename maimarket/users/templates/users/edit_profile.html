@@ -5,11 +5,12 @@
 {% endblock %}
 {% block content_user %}
 
-
+<h2 class="profile-main-title">Редактирование профиля</h2>
     <div class="edit-profile-wrapper">
         <div class="edit-profile__photo">
             <form class="add-product__form" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}" />
                 <div class="add-product__photo">
                     <h3> Изменить фотографию</h3>
                     <div class="add-product__photo-inner">
@@ -56,23 +57,13 @@
                     <button class="Btn" type="submit">Сохранить</button>
                 </div>
                </form>
+            <p></p>
+            <div class="btns">
+                <a class="Btn" href="{% url 'users:password_change' %}">Изменить пароль</a>
+            </div>
 
         </div>
     </div>
-
-
-<p>
-    <a href="{% url 'users:password_change' %}">Изменить пароль</a>
-</p>
-
-<p>
-    <form method="post" action="{% url 'users:logout' %}">
-        {% csrf_token %}
-        <button type="submit">
-            Выйти из аккаунта
-        </button>
-    </form>
-</p>
 
 
 {% endblock %}

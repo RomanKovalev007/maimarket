@@ -64,7 +64,7 @@ class ProfileUserDataChangeForm(forms.ModelForm):
         # 'hidden': True, 'accept': "image/*"
 
 class UserPasswordChangeForm(PasswordChangeForm):
-    old_password = forms.CharField(label='Старый пароль', widget=forms.PasswordInput(attrs={'placeholder':'Введите старый пароль'}))
-    new_password1 =forms.CharField(label='Новый пароль', widget=forms.PasswordInput(attrs={'placeholder':'Введите новый пароль'}))
-    new_password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль'}))
+    old_password = forms.CharField(label='Старый пароль', widget=forms.PasswordInput(attrs={'placeholder':'Введите старый пароль', 'class': "add-product__name-input"}))
+    new_password1 =forms.CharField(label='Новый пароль', widget=forms.PasswordInput(attrs={'placeholder':'Введите новый пароль', 'class': "add-product__name-input"}))
+    new_password2 = forms.CharField(label='Повтор пароля', widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль', 'class': "add-product__name-input"}))
 

@@ -30,6 +30,7 @@ def register_done(request):
 class UserPasswordChange(PasswordChangeView):
     form_class = UserPasswordChangeForm
     success_url = reverse_lazy('users:password_change_done')
+    extra_context = {'title': 'Изменение пароля'}
     template_name = 'users/password_change.html'
 
 class ProfileUserDataChange(LoginRequiredMixin, UpdateView):
@@ -67,12 +68,14 @@ def profile(request, user_id):
     user = get_object_or_404(get_user_model(), id=user_id)
     ads = Goods.objects.filter(seller=user, is_published=1)
     data = {'ads': ads,
-            'user': user,}
+            'user': user,
+            'title': f'Профиль {user.username}'}
     return render(request, 'users/profile.html', data)
+
 
 def profile_not_published(request):
     ads = Goods.objects.filter(seller=request.user, is_published=0)
-    data = {'ads': ads}
+    data = {'ads': ads, 'title': f'Профиль {request.user.username}'}
     return render(request, 'users/profile.html', data)
 
 
