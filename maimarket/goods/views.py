@@ -64,3 +64,9 @@ def edit_ad(request, ad_slug):
     }
     return render(request, 'goods/edit_ad.html', context)
 
+def remove_ad(request, ad_slug):
+    ad = Goods.objects.get(slug=ad_slug)
+    if ad.is_published:
+        ad.is_published = False
+        ad.save()
+    return redirect(request.META['HTTP_REFERER'])

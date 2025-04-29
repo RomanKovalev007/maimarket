@@ -10,4 +10,4 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, verbose_name='Email')
 
     def get_absolute_url(self):
-        return reverse('users:profile_user', kwargs={'user_id': self.id})
+        return reverse('users:profile', kwargs={'user_id': self.id})

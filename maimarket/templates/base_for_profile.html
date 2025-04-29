@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link type="text/css" href="{% static 'users/css/profile.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'users/js/tabs.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <section class="profile container" >
+        <h1 class="profile__title">Профиль</h1>
+        <div class="profile__wrapper" data-js-tabs>
+            <aside class="profile__aside">
+                <div class="profile__header">
+                    {% if user.photo %}
+                    <img class="profile__item" src="{{ user.photo.url }}" alt="" width="100" height="100">
+                    {% endif %}
+                    <div class="profile__character">
+                        <p class="profile__last-name aside-title h2">{{ user.last_name }}</p>
+                        <p class="profile__name aside-title h2">{{ user.first_name }}</p>
+                    </div>
+                </div>
+                {% if user == request.user %}
+                <div class="profile__body ">
+                    <div class="tabs" role="tablist">
+                        <a href="{{ request.user.get_absolute_url }}" class="tabs__button">
+                            Мои товары
+                        </a>
+                        <a href="{% url 'users:profile_not_published' %}" class="tabs__button">
+                            Мои неопубликованные товары
+                        </a>
+                        <a href="{% url 'favorites:fav_list' %}" class="tabs__button">
+                            Избранное
+                        </a>
+                        <a href="{% url 'users:profile_change_data' %}" class="tabs__button">
+                            Настройки профиля
+                        </a>
+                        <a href="{% url 'goods:add_ad' %}" class="tabs__button">
+                            Добавить товар
+                        </a>
+                        <form method="post" action="{% url 'users:logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">
+                                Выйти из профиля
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% else %}
+                    <a class="product-card__aside-button" href="/">Написать сообщение</a>
+                    <a class="product-card__aside-button product-card__aside-button--call" href="/">Позвонить</a>
+                {% endif %}
+            </aside>
+            <div class="profile__main">
+                <div class="profile__main-wrapper">
+                    {% block content_user %} {% endblock %}
+                </div>
+            </div>
+          </div>
+    </section>
+{% endblock %}

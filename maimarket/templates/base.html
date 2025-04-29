@@ -41,7 +41,7 @@
                 {% if user.is_authenticated %}
                   <a class="header__menu-link" href="{{ request.user.get_absolute_url }}">
                     <span class="profile__logo">
-                      <img class="profile__logo-image" src="/img/iphone_16_128_gb_rozovyy.jpg" alt="" width="35" height="35">
+                      <img class="profile__logo-image" src="{{ request.user.photo.url }}" alt="" width="35" height="35">
                     </span>
                     {{ request.user.username }}
                   </a>

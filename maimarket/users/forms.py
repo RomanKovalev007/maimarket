@@ -43,13 +43,11 @@ class RegisterForm(UserCreationForm):
                 raise ValidationError('Пользователь с таким email уже существует')
 
 class ProfileUserDataChangeForm(forms.ModelForm):
-    username = forms.CharField(disabled=None, label='Логин')
-    email = forms.CharField(disabled=None, label='Email', widget=forms.EmailInput(attrs={'placeholder': 'Введите электронную почту'}))
 
     class Meta:
         model = get_user_model()
 
-        fields = ['photo', 'first_name', 'last_name', 'username', 'number', 'email']
+        fields = ['photo', 'first_name', 'last_name', 'number']
         labels = {
             'username': 'Логин',
             'email': 'E-mail',
@@ -58,10 +56,12 @@ class ProfileUserDataChangeForm(forms.ModelForm):
             'number': 'Номер телефона'
         }
         widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'Введите имя'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Введите фамилию'}),
-            'number': forms.NumberInput(attrs={'placeholder': 'Введите номер телефона'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Введите имя', 'id' :"prodName", 'class': "add-product__name-input"}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Введите фамилию', 'id' :"prodlastname", 'class': "add-product__name-input"}),
+            'number': forms.NumberInput(attrs={'placeholder': 'Введите номер телефона', 'class': "price__input", 'id':"price"}),
+            'photo': forms.FileInput(attrs={'class': "photo-upload__input", 'hidden': True, 'id': "fileInput"}),
         }
+        # 'hidden': True, 'accept': "image/*"
 
 class UserPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label='Старый пароль', widget=forms.PasswordInput(attrs={'placeholder':'Введите старый пароль'}))
