@@ -11,6 +11,6 @@ urlpatterns = [
     path('ad/<slug:ad_slug>/', views.show_ad, name='ad'),
     path('list/', views.goods_list, name='goods_list'),
     path('edit/<slug:ad_slug>/', views.edit_ad, name='edit'),
-    path('remove/<slug:ad_slug>/', views.remove_ad, name='remove'),
+    path('publish/<slug:ad_slug>/', views.remove_ad, name='publish'),
 ]
 

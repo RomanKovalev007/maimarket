@@ -69,4 +69,8 @@ def remove_ad(request, ad_slug):
     if ad.is_published:
         ad.is_published = False
         ad.save()
+    else:
+        ad.is_published = True
+        ad.save()
     return redirect(request.META['HTTP_REFERER'])
+

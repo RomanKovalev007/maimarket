@@ -61,11 +61,16 @@
                     {{ form.description }}
                 </div>
 
-            <div class="add-product__categori">
+           <div class="add-product__categori">
                 <label class="title" for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
                 {{ form.category }}
+           </div>
 
-            </div>
+           <div class="add-product__categori">
+            <label class="title" for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+            {{ form.address }}
+           </div>
+
             <div class="price">
                 <label class="title" for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
                 <div class="priece__wrapper">

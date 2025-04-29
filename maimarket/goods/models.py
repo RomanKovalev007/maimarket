@@ -24,12 +24,17 @@ class Categories(models.Model):
         verbose_name = 'Категорию'
         verbose_name_plural = 'Категории'
 
- #   def get_absolute_url(self):
-
-
     def __str__(self):
         return self.name
 
+class Address(models.Model):
+    name = models.CharField(max_length=127, unique=True, verbose_name='Название')
+    slug = models.SlugField(max_length=127, unique=True, blank=True, null=True, verbose_name='slug')
+    address = models.CharField(max_length=127, unique=True, verbose_name='Адрес')
+    link_to_map = models.URLField(max_length=127, unique=True, verbose_name='Ссылка на карту')
+
+    def __str__(self):
+        return self.name
 
 class Goods(models.Model):
     name = models.CharField(max_length=127, unique=True, verbose_name='Название')
@@ -45,6 +50,7 @@ class Goods(models.Model):
     is_published = models.BooleanField(default=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
+    address = models.ForeignKey(to=Address, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Адрес')
 
 
     class Meta:

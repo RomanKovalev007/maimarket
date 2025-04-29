@@ -16,13 +16,23 @@
             <div class="my-products__info   ">
                 <h3 class="my-products__name">{{ ad.name }}</h3>
                 <p class="my-products__price">{{ ad.price }} <span>₽</span></p>
+                <p>{{ ad.time_create }}</p>
+                <p>{{ ad.address }}</p>
             </div>
         </div>
         </a>
         {% if user == request.user %}
         <div class="my-products__btns">
             <a class="my-products__button my-products__button--edit" href="{% url 'goods:edit' ad.slug %}">Редактировать</a>
-            <a class="my-products__button my-products__button--edit" href="{% url 'goods:remove' ad.slug %}">Удалить</a>
+
+            <a class="my-products__button my-products__button--edit" href="{% url 'goods:publish' ad.slug %}">
+                {% if ad.is_published == 1 %}
+                    Удалить
+                {% else %}
+                    Опубликовать
+                {% endif %}
+            </a>
+
         </div>
         {% endif %}
 
