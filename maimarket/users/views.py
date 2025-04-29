@@ -50,7 +50,7 @@ def edit_profile(request):
         form = ProfileUserDataChangeForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('users:profile_user', user_id=request.user.id)
+            return redirect('users:profile', user_id=request.user.id)
         else:
             print(form.errors)
     else:
