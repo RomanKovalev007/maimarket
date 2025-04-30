@@ -1,5 +1,4 @@
 from django import forms
-
 from goods.models import Goods, Categories, Address
 
 
@@ -32,4 +31,37 @@ class AdForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'placeholder': 'Опишите ваш товар или услугу', 'class': "decription-area"}),
             'price': forms.NumberInput(attrs={'placeholder': 'Введите цену', 'class': "price__input"}),
         }
+
+class GoodsFilterForm(forms.Form):
+    query = forms.CharField(
+        label='Поиск по названию',
+        required=False,
+        widget=forms.TextInput(attrs={'placeholder': 'Введите название'})
+    )
+    category = forms.ModelChoiceField(
+        queryset=Categories.objects.all(),
+        label='Категория',
+        required=False,
+        empty_label='Все категории',
+        widget=forms.Select(attrs={'class': "categories__input"})
+    )
+    min_price = forms.IntegerField(
+        label='Минимальная цена',
+        required=False,
+        min_value=0,
+        widget=forms.NumberInput(attrs={'placeholder': 'От', 'class' :"price__input"})
+    )
+    max_price = forms.IntegerField(
+        label='Максимальная цена',
+        required=False,
+        min_value=0,
+        widget=forms.NumberInput(attrs={'placeholder': 'До', 'class' :"price__input"})
+    )
+    address = forms.ModelChoiceField(
+        queryset=Address.objects.all(),
+        label='Местоположение',
+        required=False,
+        empty_label='Не указано',
+        widget=forms.Select(attrs={'class': "categories__input"})
+    )
 

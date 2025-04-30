@@ -12,5 +12,6 @@ urlpatterns = [
     path('list/', views.goods_list, name='goods_list'),
     path('edit/<slug:ad_slug>/', views.edit_ad, name='edit'),
     path('publish/<slug:ad_slug>/', views.remove_ad, name='publish'),
+    path('api/search/', views.live_search, name='live_search'),
 ]
 

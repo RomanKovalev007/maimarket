@@ -28,7 +28,7 @@ class Categories(models.Model):
         return self.name
 
 class Address(models.Model):
-    name = models.CharField(max_length=127, unique=True, verbose_name='Название')
+    name = models.CharField(max_length=127, unique=True, db_index=True, verbose_name='Название')
     slug = models.SlugField(max_length=127, unique=True, blank=True, null=True, verbose_name='slug')
     address = models.CharField(max_length=127, unique=True, verbose_name='Адрес')
     link_to_map = models.URLField(max_length=127, unique=True, verbose_name='Ссылка на карту')
@@ -36,12 +36,12 @@ class Address(models.Model):
     def __str__(self):
         return self.name
 
-class Goods(models.Model):
-    name = models.CharField(max_length=127, unique=True, verbose_name='Название')
+class Goods(models.Model):  # модель таблицы товаров
+    name = models.CharField(max_length=127, unique=True, db_index=True, verbose_name='Название')
     slug = models.SlugField(max_length=127, unique=True, verbose_name='URL')
     description = models.TextField(blank=True, null=True, verbose_name='Описание')
     image = models.ImageField(upload_to="goods/%Y/%m/%d/", blank=True, null=True, verbose_name='Изображение')
-    price = models.PositiveIntegerField(default=0, verbose_name='Цена')
+    price = models.PositiveIntegerField(default=0, db_index=True, verbose_name='Цена')
     category = models.ForeignKey(to=Categories, on_delete=models.PROTECT, verbose_name='Категория')
     #related_name = 'goods'
 

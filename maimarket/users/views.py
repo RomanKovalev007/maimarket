@@ -80,6 +80,7 @@ def profile_not_published(request):
 
 
 
+
 @login_required
 def profile_user(request):
     ads = Goods.objects.filter(seller=request.user, is_published=1)

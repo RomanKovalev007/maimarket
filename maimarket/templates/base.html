@@ -8,21 +8,22 @@
     <title>{{ title }}</title>
     {% block css %} {% endblock %}
     <link type="text/css" href="{% static 'main/css/main_style.css'%}" rel="stylesheet">
-
-
+    <link type="text/css" href="{% static 'main/css/search.css'%}" rel="stylesheet">
+    <script src="{% static 'main/js/search.js' %}" defer></script>
     {% block js %} {% endblock %}
-
 </head>
 <body>
     <header class="header">
         <a class="header__logo" href="/">
            <img class="header__logo-image" src="{% static 'main/img/mai_logo_color.png' %}" alt="MAI logo" width="80px">
         </a>
-        <form class="header__form">
-                <input class="header__form-search"  type="text" placeholder="Поиск товаров...">
-            <button class="header__form-search-button" type="submit">Найти</button>
-        </form>
-
+        <div class="search-container">
+            <form class="header__form" id="search-form">
+                <input class="header__form-search" id="search-input" type="text" placeholder="Поиск товаров..." autocomplete="off">
+                <button class="header__form-search-button" type="submit">Найти</button>
+            </form>
+            <div id="search-results" class="search-results"></div>
+        </div>
         <nav class="header__menu">
             <ul class="header__menu-list">
                 <li class="header__menu-item">

@@ -6,59 +6,40 @@
 
 <main class="main">
         <aside class="asside__filters">
-
-          <form class="filter-products">
+          <form class="filter-products" method="get">
+            <label class="title" for="{{ form.query.id_for_label }}">Название</label>
+          {{ form.query }}
             <div class="add-product__categori">
-              <label class="title" for="choseCategori">Категории</label>
-              <select class="categories__input" name="catrgories" id="choseCategori">
-                <option selected disabled>Выберите подходящую категорию</option>
-                <option value="electronicProducts">Электроника</option>
-                <option value="carProducts">Авто</option>
-                <option value="houseProducts">Товары для дома</option>
-                <option value="clotheProducts">Одежда и обувь</option>
-                <option value="accesoriesProducts">Аксессуары</option>
-                <option value="beautyProducts">Красота и здоровье</option>
-                <option value="booksProducts">Книги</option>
-                <option value="servicesProducts">Услуги</option>
-                <option value="otherProducts">Другое</option>
-              </select>
+              <label class="title" for="{{ form.category.id_for_label }}">Категории</label>
+              {{ form.category }}
             </div>
 
             <div class="price">
-              <label class="title">Цена</label>
-              <div class="priece__wrapper">
-                <div>
-                  <label for="priceMin">от</label>
-                  <input type="text" class="price__input" id="priceMin" name="minimumPrice">
-                  <span class="money-symbol">₽</span>
+                <label class="title">Цена</label>
+                <div class="priece__wrapper">
+                  <div>
+                    <label for="{{ form.min_price.id_for_label }}">от</label>
+                    {{ form.min_price }}
+
+                    <span class="money-symbol">₽</span>
+                  </div>
+                  <div>
+                    <label for="{{ form.max_price.id_for_label }}">до</label>
+                    {{ form.max_price }}
+
+                    <span class="money-symbol">₽</span>
+                  </div>
                 </div>
-                <div>
-                  <label for="priceMax">до</label>
-                  <input type="text" class="price__input" id="priceMax" name="maximumPrice">
-                  <span class="money-symbol">₽</span>
-                </div>
-              </div>
             </div>
 
-            <fieldset class="location">
-              <legend class="title legend">Выбрать расположение</legend>
-              <div class="checkboxs__wrapper">
-                <div class="checkbox">
-                  <input type="checkbox" name="productLocation" id="firstObchaga" value="firstObchage">
-                  <label for="firstObchaga">Общежитие №1</label>
-                </div>
-                <div class="checkbox">
-                  <input type="checkbox" name="productLocation" id="secondObchaga" value="secondObchage">
-                  <label for="secondObchaga">Общежитие №2</label>
-                </div>
-                <div class="checkbox">
-                  <input type="checkbox" name="productLocation" id="otherObchaga" value="other">
-                  <label for="otherObchaga">Другое</label>
-                </div>
-              </div>
-            </fieldset>
+            <div class="add-product__categori">
+              <label class="title" for="{{ form.address.id_for_label }}">Местоположение</label>
+              {{ form.address }}
+            </div>
+
 
             <button class="Btn" type="submit">Применить</button>
+            <a href="{% url 'goods:goods_list' %}" class="Btn" >Сбросить</a>
           </form>
         </aside>
 
