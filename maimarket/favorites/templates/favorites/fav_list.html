@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_for_profile.html' %}
 {% load static %}
 
 {% block js %}
 <script src="{% static 'goods/js/main-prod.js' %}" defer></script>
 {% endblock %}
 
-{% block content %}
+{% block content_user %}
 
 <main class="main">
         <section class="goods">
@@ -51,7 +51,7 @@
                     </g>
                   </svg>
                 </span>
-                <p>Общежитие №1</p>
+                <p>{{ ad.product.address }}</p>
 
               </div>
             </div>

@@ -40,7 +40,7 @@ def show_ad(request, ad_slug):
         'ad': ad,
         'title': ad.name
     }
-    return render(request, 'goods/ad.html', context)
+    return render(request, 'goods/product-card.html', context)
 
 
 def edit_ad(request, ad_slug):
@@ -63,4 +63,14 @@ def edit_ad(request, ad_slug):
         'title': 'Редактирование объявления'
     }
     return render(request, 'goods/edit_ad.html', context)
+
+def remove_ad(request, ad_slug):
+    ad = Goods.objects.get(slug=ad_slug)
+    if ad.is_published:
+        ad.is_published = False
+        ad.save()
+    else:
+        ad.is_published = True
+        ad.save()
+    return redirect(request.META['HTTP_REFERER'])
 

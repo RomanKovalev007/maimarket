@@ -1,16 +1,44 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base_for_profile.html' %}
+{% load static %}
 
-<h1>{{ user.username }}</h1>
-<h2>{{ user.first_name }} {{ user.last_name }}</h2>
 
-{% if user.photo %}
-<p><img src="{{ user.photo.url }}" alt="Изображение"> </p>
-{% endif %}
-git add .          
-<h1>fds</h1>
-<h2>asdas</h2>
-<h3>asdasd</h3>
-{{user.number}}
+{% block content_user %}
+
+<h2 class="profile-main-title">{% if user == request.user %}Мои товары{% else %}Товары продавца{% endif %}</h2>
+<ul class="my-products__list">
+    {% for ad in ads %}
+    <li class="my-products__item">
+        <a href="{{ ad.get_absolute_url }}">
+        <div class="my-products__item-wrapper">
+            <div class="my-products__photo">
+                <img class="my-products__image" src="{{ ad.image.url }}" alt="">
+            </div>
+            <div class="my-products__info   ">
+                <h3 class="my-products__name">{{ ad.name }}</h3>
+                <p class="my-products__price">{{ ad.price }} <span>₽</span></p>
+                <p>{{ ad.time_create }}</p>
+                <p>{{ ad.address }}</p>
+            </div>
+        </div>
+        </a>
+        {% if user == request.user %}
+        <div class="my-products__btns">
+            <a class="my-products__button my-products__button--edit" href="{% url 'goods:edit' ad.slug %}">Редактировать</a>
+
+            <a class="my-products__button my-products__button--edit" href="{% url 'goods:publish' ad.slug %}">
+                {% if ad.is_published == 1 %}
+                    Удалить
+                {% else %}
+                    Опубликовать
+                {% endif %}
+            </a>
+
+        </div>
+        {% endif %}
+
+    </li>
+    {% endfor %}
+</ul>
+
 
 {% endblock %}

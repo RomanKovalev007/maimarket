@@ -1,16 +1,19 @@
 from django import forms
 
-from goods.models import Goods, Categories
+from goods.models import Goods, Categories, Address
 
 
 class AdForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=Categories.objects.all(), empty_label='Категория не выбрана',
                                       label='Категория', required=True,
                                       widget=forms.Select(attrs={'class': "categories__input"}))
+    address = forms.ModelChoiceField(queryset=Address.objects.all(), empty_label='Адрес не выбран',
+                                      label='Местоположение', required=True,
+                                      widget=forms.Select(attrs={'class': "categories__input"}))
 
     class Meta:
         model = Goods
-        fields = ['name','image', 'category', 'condition', 'description', 'price']
+        fields = ['name','image', 'category', 'address', 'condition', 'description', 'price']
 
         labels = {
             'name': 'Название товара',

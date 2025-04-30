@@ -1,0 +1,78 @@
+{% extends 'base_for_profile.html' %}
+{% load static %}
+{% block js %}
+    <script src="{% static 'goods/js/new-product.js' %}" defer></script>
+{% endblock %}
+{% block content_user %}
+
+
+    <div class="edit-profile-wrapper">
+        <div class="edit-profile__photo">
+            <form class="add-product__form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="add-product__photo">
+                    <h3> Изменить фотографию</h3>
+                    <div class="add-product__photo-inner">
+                        <div class="photo-preview-wrapper">
+                            <div class="photo-preview-box hidden">
+                                <img class="preview__image" id="preview" src=""  width="70" height="70"/>
+                                <button class="delete__photoBTN">
+                                    <span class="red_line"></span>
+                                    <span class="red_line"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="photo-upload">
+                            <label class="photo-upload-label">
+                                {{ form.photo }}
+                                <p class="uploadtext">Добавить фотографию</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-product__name">
+                    <label for="{{ form.first_name.id_for_label }}">Имя</label>
+                    {{ form.first_name }}
+                </div>
+                <div class="add-product__name">
+                    <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                    {{ form.last_name }}
+                </div>
+
+
+
+                <div class="price">
+                    <label class="title" for="{{ form.number.id_for_label }}">Номер телефона</label>
+                    <div class="priece__wrapper">
+                        {{ form.number }}
+                    </div>
+                </div>
+
+
+
+                <div class="btns">
+                    <button class="Btn" type="submit">Сохранить</button>
+                </div>
+               </form>
+
+        </div>
+    </div>
+
+
+<p>
+    <a href="{% url 'users:password_change' %}">Изменить пароль</a>
+</p>
+
+<p>
+    <form method="post" action="{% url 'users:logout' %}">
+        {% csrf_token %}
+        <button type="submit">
+            Выйти из аккаунта
+        </button>
+    </form>
+</p>
+
+
+{% endblock %}

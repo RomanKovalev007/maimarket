@@ -1,35 +1,34 @@
 {% extends 'base_for_forms.html' %}
+
 {% block content %}
 
+<form class="form-registration" method="post">
+    {% csrf_token %}
+    <h1 class="form-registration__title">
+            Войти
+    </h1>
 
+    <input type="hidden" name="next" value="{{ next }}" />
+    <div class="form-error">{{ form.non_field_errors }}</div>
 
-        <form class="form-registration" method="post">
-            {% csrf_token %}
-            <h1 class="form-registration__title">
-                    Войти
-            </h1>
-
-            <input type="hidden" name="next" value="{{ next }}" />
-            <div class="form-error">{{ form.non_field_errors }}</div>
-
-            {% for f in form %}
-                <div class="form-box">
-                    <label class="visually-hidden" for="{{ f.id_for_label }}">{{ f.label }}</label>
-                    <p> {{ f }} </p>
-                    <div></div>
-                    <div class="form-error">{{ f.errors }}</div>
-                </div>
-            {% endfor %}
-
-            <div class="form__input-box">
-                <button type="submit" class="button button--registration">Войти</button>
-            </div>
-        </form>
-        <a class="forgot__password" href="{% url 'users:password_reset' %}">Забыли пароль?</a>
-
-        <div class="link__wrapper">
-            <a class="form__link" href="{% url 'users:register' %}">Регистрация</a>
+    {% for f in form %}
+        <div class="form-box">
+            <label class="visually-hidden" for="{{ f.id_for_label }}">{{ f.label }}</label>
+            <p> {{ f }} </p>
+            <div></div>
+            <div class="form-error">{{ f.errors }}</div>
         </div>
+    {% endfor %}
+
+    <div class="form__input-box">
+        <button type="submit" class="button button--registration">Войти</button>
+    </div>
+</form>
+<a class="forgot__password" href="{% url 'users:password_reset' %}">Забыли пароль?</a>
+
+<div class="link__wrapper">
+    <a class="form__link" href="{% url 'users:register' %}">Регистрация</a>
+</div>
 
 
 

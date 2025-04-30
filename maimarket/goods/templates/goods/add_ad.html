@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+    <link type="text/css" href="{% static 'goods/css/new_prod.css'%}" rel="stylesheet">
+{% endblock %}
+
 {% block js %}
-<script src="{% static 'goods/js/new-product.js' %}" defer></script>
+    <script src="{% static 'goods/js/new-product.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -57,11 +61,16 @@
                     {{ form.description }}
                 </div>
 
-            <div class="add-product__categori">
+           <div class="add-product__categori">
                 <label class="title" for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
                 {{ form.category }}
+           </div>
 
-            </div>
+           <div class="add-product__categori">
+            <label class="title" for="{{ form.address.id_for_label }}">{{ form.address.label }}</label>
+            {{ form.address }}
+           </div>
+
             <div class="price">
                 <label class="title" for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
                 <div class="priece__wrapper">
