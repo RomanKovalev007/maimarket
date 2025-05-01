@@ -23,9 +23,9 @@ def fav_change(request, ad_id):
     favs = Favorites.objects.filter(user=request.user, product=product)
     if favs.exists():
         favs.delete()
-        return JsonResponse({'status': 'removed', 'is_favorite': False})
+        return JsonResponse({'is_favorite': False})
     else:
         Favorites.objects.create(user=request.user, product=product)
-        return JsonResponse({'status': 'added', 'is_favorite': True})
+        return JsonResponse({'is_favorite': True})
 
 
