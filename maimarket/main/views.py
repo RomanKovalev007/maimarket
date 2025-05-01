@@ -11,9 +11,9 @@ def main_page(request):
     if request.user.is_authenticated:
         for ad in ads:
             if Favorites.objects.filter(user=request.user, product=ad).exists():
-                ad.icon_class = "icon-red-heart"
+                ad.is_favorite = 'is-active'
             else:
-                ad.icon_class = "icon--heart"
+                ad.is_favorite = ''
     else:
         for ad in ads:
             ad.icon_class = "icon--heart"
