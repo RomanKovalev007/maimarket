@@ -10,7 +10,9 @@
     <link type="text/css" href="{% static 'main/css/main_style.css'%}" rel="stylesheet">
     <link type="text/css" href="{% static 'main/css/search.css'%}" rel="stylesheet">
     <script src="{% static 'main/js/search.js' %}" defer></script>
+    <script src="{% static 'main/js/favorite.js' %}" defer></script>
     {% block js %} {% endblock %}
+
 </head>
 <body>
     <header class="header">
@@ -60,6 +62,7 @@
     </header>
 
 {% block content %} {% endblock %}
+
 
 </body>
 </html>

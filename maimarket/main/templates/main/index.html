@@ -62,10 +62,11 @@
               <div class="goods__card-text-box">
                 <a href="{{ ad.get_absolute_url }}">
                   <p class="goods__card-text">{{ ad.name }}</p>
+        
                 </a>
-
+                
                 <span class="icon--heart">
-                  <div class="{{ ad.icon_class }}">
+                  <div id="{{ ad.id }}" class="{{ ad.icon_class }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="gray" xmlns="http://www.w3.org/2000/svg">
                       {% if ad.icon_class == "icon--heart" %}
                       <a href="{% url 'favorites:add' ad.slug %}">
