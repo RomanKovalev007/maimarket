@@ -2,6 +2,7 @@ from audioop import reverse
 from itertools import product
 
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
@@ -15,22 +16,16 @@ def fav_list(request):
     data = {'ads': ads}
     return render(request, 'favorites/fav_list.html', data)
 
+
 @login_required
-def fav_add(request, ad_slug):
-    product = Goods.objects.get(slug=ad_slug)
-    favs = Favorites.objects.filter(user=request.user, product=product)
-    if not favs.exists():
-        Favorites.objects.create(user=request.user, product=product)
-    return redirect(request.META['HTTP_REFERER'])
-
-
-
-def fav_change(request, ad_slug):
-    ...
-
-def fav_delete(request, ad_slug):
-    product = Goods.objects.get(slug=ad_slug)
+def fav_change(request, ad_id):
+    product = Goods.objects.get(id=ad_id)
     favs = Favorites.objects.filter(user=request.user, product=product)
     if favs.exists():
         favs.delete()
-    return redirect(request.META['HTTP_REFERER'])
+        return JsonResponse({'status': 'removed', 'is_favorite': False})
+    else:
+        Favorites.objects.create(user=request.user, product=product)
+        return JsonResponse({'status': 'added', 'is_favorite': True})
+
+
