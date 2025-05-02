@@ -11,14 +11,13 @@ class FavoriteProduct{
     }
 
 
-    sendId(elemeent){
+    sendId(element){
         this.favoriteId =  element.id
         
         fetch(`favorites/api/change/${encodeURIComponent(this.favoriteId)}/`)
         .then(response => response.json())
         .then((json)=>{
-            const {is_favorite} = json
-            this.iconHeartElement.classList.toggle(this.state.isActive, is_favorite) 
+            return  
         })
         
     }
@@ -63,3 +62,4 @@ class FavoriteProduct{
 }
 
 export default FavoriteProduct
+
