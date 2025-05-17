@@ -1,11 +1,8 @@
-from autoslug import AutoSlugField
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from unicodedata import category
 
-from users.models import User
 
 def translit_to_eng(s: str) -> str:
     d = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
@@ -36,6 +33,13 @@ class Address(models.Model):
     def __str__(self):
         return self.name
 
+class Condition(models.Model):
+    name = models.CharField(max_length=127, unique=True, db_index=True, verbose_name='Название')
+    slug = models.SlugField(max_length=127, unique=True, blank=True, null=True, verbose_name='slug')
+
+    def __str__(self):
+        return self.name
+
 class Goods(models.Model):  # модель таблицы товаров
     name = models.CharField(max_length=127, unique=True, db_index=True, verbose_name='Название')
     slug = models.SlugField(max_length=127, unique=True, verbose_name='URL')
@@ -46,7 +50,7 @@ class Goods(models.Model):  # модель таблицы товаров
     #related_name = 'goods'
 
     seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name='Продавец')
-    condition = models.BooleanField(default=True)
+    condition = models.ForeignKey(to=Condition, on_delete=models.PROTECT, verbose_name='Состояние')
     is_published = models.BooleanField(default=True)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)

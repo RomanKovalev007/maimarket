@@ -20,9 +20,9 @@ def main_page(request):
     data = {'ads': ads, 'title': 'MAI Market'}
     return render(request, 'main/index.html', data)
 
-def index(request):
-    data = {'title': 'MAI_market'}
-    return render(request, 'main/index.html', data)
 
 def about(request):
     return render(request, 'main/about.html')
+
+def support(request):
+    return render(request, 'main/support.html')

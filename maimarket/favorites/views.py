@@ -1,10 +1,7 @@
-from audioop import reverse
-from itertools import product
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.shortcuts import render
 
 from favorites.models import Favorites
 from goods.models import Goods

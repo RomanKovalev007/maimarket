@@ -8,6 +8,7 @@ class User(AbstractUser):
     number = models.PositiveBigIntegerField(blank=True, null=True, verbose_name='Контактный телефон')
     address = models.CharField(max_length=100, blank=True, null=True, verbose_name='Адрес')
     email = models.EmailField(unique=True, verbose_name='Email')
+    telegram = models.SlugField(null=True, blank=True, verbose_name='Ссылка на телеграмм')
 
     def get_absolute_url(self):
         return reverse('users:profile', kwargs={'user_id': self.id})

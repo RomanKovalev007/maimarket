@@ -1,51 +1,62 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block css %}
-    <link type="text/css" href="{% static 'goods/css/product-card.css'%}" rel="stylesheet">
-{% endblock %}
-
 
 {% block content %}
-        <section class="product-card container">
-            <div class="product-card__header">
-                <h1 class="product-card__name">{{ ad.name }}</h1>
-                <p class="product-card__price h1">{{ ad.price }} ₽ </p>
 
+
+<main class="main">
+    <section class="section container">
+      <div class="section__body">
+        <div class="product-card">
+            <div class="product-card__header">
+                <h1 class="product-card__name h3">{{ ad.name }}</h1>
+                <p class="product-card__price h3">{{ ad.price }} ₽ </p>
             </div>
             <div class="product-card__body">
-                {% if ad.image %}
                 <div class="product-card__photo">
+                    {% if ad.image %}
                     <img class="product-card__image" src="{{ ad.image.url }}" alt="" width="662" height="450">
+                    {% endif %}
                 </div>
-                {% endif %}
                 <div class="product-card__aside">
                     <div class="product-card__link">
                         <a class="product-card__aside-profile" href="{{ ad.seller.get_absolute_url }}">
-                            {{ ad.seller.username }}
+                            <p>{{ ad.seller.username }}</p>
+                            {% if ad.seller.photo %}
+                            <img class="product-card__aside-profile-image" src="{{ ad.seller.photo.url }}" alt="" width="60" height="60">
+                            {% endif %}
                         </a>
-                        {% if ad.seller.photo %}
-                        <a class="product-card__aside-profile-img" href="{{ ad.seller.get_absolute_url }}">
-                            <img class="product-card__aside-profile-imgage" src="{{ ad.seller.photo.url }}" alt="" width="60" height="60">
-                        </a>
-                        {% endif %}
                     </div>
-                    <a class="product-card__aside-button" href="/">Написать сообщение</a>
-                    <a class="product-card__aside-button product-card__aside-button--call" href="/">Позвонить</a>
+
+
                     {% if user == ad.seller %}
-                    <a class="redact__icon" href="{% url 'goods:edit' ad.slug %}">
-                        <p>Редактировать объявление</p>
+                    <a class="product-card__redact-icon button" href="{% url 'goods:edit' ad.slug %}">
+                        <p>Редактировать</p>
                     </a>
+                    {% else %}
+                    <a href="https://t.me/{{ ad.seller.telegram }}" class="product-card__aside-button button button--blue">Написать в телеграмм</a>
+                    <a class="product-card__aside-button button button--green product-card__aside-button--call" href="/">Позвонить</a>
                     {% endif %}
                 </div>
             </div>
             <div class="product-card__address">
-                <h2>Расположение</h2>
-                <p>{{ ad.address.name }}, <a href="{{ ad.address.link_to_map }}" target="_blank" rel="noopener noreferrer"> {{ ad.address.address }} </a></p>
+                <h2 class="h3">Расположение</h2>
+                <p>
+                    {{ ad.address.name }},
+                    <a href="{{ ad.address.link_to_map }}" target="_blank" rel="noopener noreferrer">
+                        {{ ad.address.address }}
+                    </a>
+                </p>
             </div>
             <div class="product-card__description">
-                <h2>Описание</h2>
-                <p>{{ad.description}}</p>
+                <h2 class="h3">Описание</h2>
+                <p>
+                    {{ad.description}}
+                </p>
             </div>
-        </section>
+        </div>
+      </div>
+    </section>
+</main>
 {% endblock %}

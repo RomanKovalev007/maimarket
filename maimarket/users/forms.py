@@ -5,38 +5,31 @@ from django.core.exceptions import ValidationError
 
 
 class LoginUserForm(AuthenticationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'placeholder': 'Введите логин или email', 'class': 'form__input'}))
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль', 'class': 'form__input'}))
-
-
+    username = forms.CharField(label="Логин или Почта", widget=forms.TextInput(attrs={'placeholder': 'Введите email',
+                                                          'class': "form__box-input",
+                                                           'pattern': "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+                                                          'title': "Введите корректный email, например: example@mail.com"}))
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={'placeholder': 'Введите пароль',
+                                                                 'class': "form__box-input",
+                                                                 'minlength':"8",
+                                                                 "pattern":"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$" }))
 class RegisterForm(UserCreationForm):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'placeholder': 'Придумайте логин', 'class': 'form__input'}))
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Придумайте пароль', 'class': 'form__input'}))
-    password2 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль', 'class': 'form__input'}))
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'placeholder': 'Придумайте логин', 'class': "form__box-input",
+                                                           'pattern': "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"}))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Придумайте пароль', 'class': "form__box-input",
+                                                                 'minlength':"8",
+                                                                 "pattern":"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"}))
+    password2 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Повторите пароль', 'class': "form__box-input",
+                                                                 'minlength':"8",
+                                                                 "pattern":"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"}))
+    email = forms.CharField(label='Email', widget=forms.TextInput(attrs={'placeholder': 'Введите вашу почту', 'class': "form__box-input",
+                                                           'pattern': "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"}))
 
     class Meta:
         model = get_user_model()
 
         fields = ['username', 'password1', 'password2', 'email']
-        # 'first_name', 'last_name',  'number', 'email'
-        labels = {
-            'password1': 'Пароль',
-            'password2': 'Повтор пароля',
-            'username': 'Логин',
-            'email': 'E-mail',
-            'first_name': 'Имя',
-            'last_name': 'Фамилия',
-            'number': 'Номер телефона'
-        }
-        widgets = {
-            'username': forms.TextInput(attrs={'placeholder': 'Придумайте логин', 'class': 'form__input'}),
-            'first_name': forms.TextInput(attrs={'placeholder': 'Введите имя', 'class': 'form__input'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Введите фамилию', 'class': 'form__input'}),
-            'password1': forms.PasswordInput(attrs={'placeholder': 'Придумайте пароль', 'class': 'form__input'}),
-            'password2': forms.PasswordInput(attrs={'placeholder': 'Повторите пароль', 'class': 'form__input'}),
-            'number': forms.NumberInput(attrs={'placeholder': 'Введите номер телефона', 'class': 'form__input'}),
-            'email': forms.EmailInput(attrs={'placeholder': 'Введите электронную почту', 'class': 'form__input'})
-        }
+
         def clean_email(self):
             email = self.cleaned_data['email']
             if get_user_model().objects.filter(email=email).exists():
@@ -47,7 +40,7 @@ class ProfileUserDataChangeForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
 
-        fields = ['photo', 'first_name', 'last_name', 'number']
+        fields = ['photo', 'first_name', 'last_name', 'number', 'telegram']
         labels = {
             'username': 'Логин',
             'email': 'E-mail',
@@ -56,10 +49,11 @@ class ProfileUserDataChangeForm(forms.ModelForm):
             'number': 'Номер телефона'
         }
         widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'Введите имя', 'id' :"prodName", 'class': "add-product__name-input"}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Введите фамилию', 'id' :"prodlastname", 'class': "add-product__name-input"}),
-            'number': forms.NumberInput(attrs={'placeholder': 'Введите номер телефона', 'class': "price__input", 'id':"price"}),
-            'photo': forms.FileInput(attrs={'class': "photo-upload__input", 'hidden': True, 'id': "fileInput"}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Введите имя', 'class': "add-product__name-input"}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Введите фамилию', 'class': "add-product__name-input"}),
+            'number': forms.NumberInput(attrs={'placeholder': 'Введите номер телефона', 'class': "add-product__name-input", 'id':"add-product__price-input"}),
+            'photo': forms.FileInput(attrs={'class': "add-product__upload-input", 'hidden': True, 'id': "fileInput"}),
+            'telegram': forms.TextInput(attrs={'placeholder': 'Введите ник в телеграмме без @', 'class': "add-product__name-input"}),
         }
         # 'hidden': True, 'accept': "image/*"
 
