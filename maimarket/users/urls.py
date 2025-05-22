@@ -11,13 +11,11 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', views.RegisterUser.as_view(), name='register'),
     path('register_done/', views.register_done, name='register_done'),
-    path('profile/<int:user_id>/', views.profile, name='profile'),
+    path('profile/<int:user_id>/', views.profile_goods, name='profile'),
     path('profile/not_published/', views.profile_not_published, name='profile_not_published'),
-    path('my_profile/', views.profile_user, name='my_profile'),
     path('profile/change_data/', views.edit_profile, name='profile_change_data'),
     path('profile/change_password/', views.UserPasswordChange.as_view(), name='password_change'),
     path('profile/change_password/done/', PasswordChangeDoneView.as_view(template_name='users/password_change_done.html'), name='password_change_done'),
-
     path('password_reset/', PasswordResetView.as_view(
         template_name='users/password_reset_form.html',
         email_template_name='users/password_reset_email.html',

@@ -65,7 +65,7 @@ def edit_profile(request):
     return render(request, 'users/edit_profile.html', context)
 
 
-def profile(request, user_id):
+def profile_goods(request, user_id):
     user = get_object_or_404(get_user_model(), id=user_id)
     ads = Goods.objects.filter(seller=user, is_published=1)
     data = {'ads': ads,
