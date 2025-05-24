@@ -1,16 +1,19 @@
-from audioop import reverse
+import random
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
 from favorites.models import Favorites
 from goods.models import Goods
-from users.forms import LoginUserForm, RegisterForm, ProfileUserDataChangeForm, UserPasswordChangeForm
+from maimarket import settings
+from users.forms import LoginUserForm, RegisterForm, ProfileUserDataChangeForm, UserPasswordChangeForm, VerificationForm
+from users.models import EmailVerification
 
 
 class LoginUser(LoginView):
@@ -88,3 +91,63 @@ def profile_user(request):
     data = {'ads': ads}
     return render(request, 'users/my_profile.html', data)
 
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            # 1. Сохраняем данные во временную сессию (не в БД!)
+            request.session['temp_user'] = {
+                'username': form.cleaned_data['username'],
+                'email': form.cleaned_data['email'],
+                'password': form.cleaned_data['password1'],  # Пароль уже захэширован
+                'code': str(random.randint(100000, 999999)),
+            }
+
+            # 2. Отправляем код на email
+            send_mail(
+                'Код подтверждения',
+                f'Ваш код: {request.session["temp_user"]["code"]}',
+                settings.EMAIL_HOST_USER,
+                [form.cleaned_data['email']],
+                fail_silently=False,
+            )
+
+            # 3. Перенаправляем на страницу ввода кода
+            return redirect('users:verify_email')
+
+    else:
+        form = RegisterForm()
+    return render(request, 'users/register.html', {'form': form})
+
+def verify_email(request):
+    if 'temp_user' not in request.session:
+        return redirect('register')  # Если нет данных, возвращаем на регистрацию
+
+    if request.method == 'POST':
+        form = VerificationForm(request.POST)
+        if form.is_valid():
+            user_code = form.cleaned_data['code']
+            saved_code = request.session['temp_user']['code']
+
+            if user_code == saved_code:
+                # Код верный → создаем пользователя
+                get_user_model().objects.create_user(
+                    username=request.session['temp_user']['username'],
+                    email=request.session['temp_user']['email'],
+                    password=request.session['temp_user']['password'],
+                )
+                del request.session['temp_user']  # Очищаем сессию
+                return redirect('users:login')  # Перенаправляем на вход
+            else:
+                # Код неверный – ошибка
+                return render(request, 'users/verify_email.html', {
+                    'form': form,
+                    'error': 'Неверный код. Попробуйте снова.',
+                })
+    else:
+        form = VerificationForm()
+
+    return render(request, 'users/verify_email.html', {'form': form})
