@@ -14,9 +14,6 @@ def main_page(request):
                 ad.is_favorite = 'is-active'
             else:
                 ad.is_favorite = ''
-    else:
-        for ad in ads:
-            ad.icon_class = "icon--heart"
     data = {'ads': ads, 'title': 'MAI Market'}
     return render(request, 'main/index.html', data)
 

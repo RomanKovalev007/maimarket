@@ -6,7 +6,7 @@ from django.views.generic import CreateView
 from django.http import JsonResponse
 from django.db.models import Q
 from favorites.models import Favorites
-from goods.forms import AdForm, GoodsFilterForm, SearchForm
+from goods.forms import AdForm, GoodsFilterForm
 from goods.models import Goods
 
 
@@ -105,34 +105,6 @@ def remove_ad(request, ad_slug):
         ad.is_published = True
         ad.save()
     return redirect(request.META['HTTP_REFERER'])
-
-
-
-def search(request):
-    form = SearchForm(request.GET or None)
-    ads = Goods.objects.filter(is_published=True)
-    if form.is_valid():
-        query = form.cleaned_data.get('query')
-        if query:
-            ads = ads.filter(
-                Q(name__icontains=query) |
-                Q(description__icontains=query)
-            )
-    for ad in ads:
-        if request.user.is_authenticated and Favorites.objects.filter(user=request.user, product=ad).exists():
-            ad.icon_class = "icon-red-heart"
-        else:
-            ad.icon_class = "icon--heart"
-
-    context = {
-        'ads': ads,
-        'title': 'Лента объявлений',
-        'form': form
-    }
-    return render(request, 'goods/goods_list.html', context)
-
-
-
 
 
 def live_search(request):

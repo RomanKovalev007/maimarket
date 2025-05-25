@@ -140,7 +140,7 @@ def verify_email(request):
                     password=request.session['temp_user']['password'],
                 )
                 del request.session['temp_user']  # Очищаем сессию
-                return redirect('users:login')  # Перенаправляем на вход
+                return redirect('users:register_done')  # Перенаправляем на вход
             else:
                 # Код неверный – ошибка
                 return render(request, 'users/verify_email.html', {

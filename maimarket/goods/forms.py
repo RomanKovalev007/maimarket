@@ -36,18 +36,15 @@ class AdForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'placeholder': 'Введите цену', 'class': "add-product__price-input"}),
         }
 
-class SearchForm(forms.Form):
-    query = forms.CharField(
-        label='Поиск по названию',
-        required=False,
-        widget=forms.TextInput(attrs={'placeholder': 'Введите название', 'class' :"product-filters__price-input"})
-    )
 
 class GoodsFilterForm(forms.Form):
     query = forms.CharField(
         label='Поиск по названию',
+        max_length=100,
         required=False,
-        widget=forms.TextInput(attrs={'placeholder': 'Введите название', 'class' :"product-filters__price-input"})
+        widget=forms.TextInput(attrs={
+        'placeholder': 'Поиск товаров...',
+        'class': 'add-product__name-input'})
     )
     category = forms.ModelChoiceField(
         queryset=Categories.objects.all(),
@@ -55,14 +52,12 @@ class GoodsFilterForm(forms.Form):
         required=False,
         empty_label='Все категории',
         widget=forms.Select(attrs={'class': "product-filters__categories-input"})
-        #  name="catrgories" id="choseCategori"
     )
     min_price = forms.IntegerField(
         label='Минимальная цена',
         required=False,
         min_value=0,
         widget=forms.NumberInput(attrs={'placeholder': 'От', 'class' : "product-filters__price-input"})
-        #  id="priceMin" name="minimumPrice"
     )
     max_price = forms.IntegerField(
         label='Максимальная цена',

@@ -6,22 +6,19 @@
 
   <main class="main">
     <section class="section container">
-      <header class="section__header ">
-          <h1 class="section__header-title h3">Фильтры</h1>
-      </header>
+
       <div class="section__body">
         <div class="main-page">
           <aside class="product-filters">
             <h1 class="goods-main__title h3 visible-mobile">Популярные товары</h1>
             <form class="product-filters__form" method="get">
                 <div class="product-filters__categories">
-                  <label class="title" for="{{ form.query.id_for_label }}">Название</label>
+                  <label class="product-filters__categories-title h4" for="{{ form.query.id_for_label }}">Название</label>
                   {{ form.query }}
                   <label class="product-filters__categories-title h4" for="{{ form.category.id_for_label }}">Категории</label>
                   {{ form.category }}
                 </div>
                 <div class="product-filters__price">
-
                   <label class="product-filters__price-title h4">Цена</label>
                   <div class="product-filters__price-wrapper">
                     <div class="product-filters__price-box">
